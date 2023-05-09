@@ -69,32 +69,14 @@
     });
     const data = await r.json();
     console.log(data);
-  }
-</script>
 
-<!-- <script>
-  async function sendData(event) {
-    event.preventDefault();
-    const fd = new FormData(document.form1);
-    const usp3 = new URLSearchParams(fd);
-    const r = await fetch("", {
-      method: "POST",
-      body: usp3.toString(),
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-    });
-
-    const data = await r.json();
-
-    console.log(data);
     if (data.success) {
-        alert("登入成功");
-        location.href = "/";
+      alert("登入成功~");
+      location.href = "/";
     } else {
-      alert(data.error || "帳號或密碼錯誤!!");
+      alert("登入失敗~");
     }
   }
-</script> -->
+</script>
 
 <%- include('parts/html-footer') %>
