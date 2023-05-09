@@ -1,0 +1,100 @@
+<%- include('parts/html-header') %> <%- include('parts/navbar') %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">管理者登入</h5>
+
+          <form name="form1" method="post" onsubmit="sendData(event)">
+            <div class="mb-3">
+              <label for="account" class="form-label">account</label>
+              <input
+                type="text"
+                class="form-control"
+                id="account"
+                name="account"
+                required
+              />
+              <div class="form-text"></div>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                name="password"
+              />
+              <div class="form-text"></div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">登入</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('parts/scripts') %>
+
+<!-- <script>
+  // use FormData send request
+  async function sendData(event) {
+    event.preventDefault();
+    const fd = new FormData(document.form1);
+    const r = await fetch("/login", {
+      method: "POST",
+      body: fd,
+    });
+    const data = await r.json();
+    console.log(data);
+  }
+</script> -->
+
+<script>
+  // use URLSearchParams send request
+  async function sendData(event) {
+    event.preventDefault();
+    const fd = new FormData(document.form1);
+    const usp = new URLSearchParams(fd);
+    const r = await fetch("/login", {
+      method: "POST",
+      body: usp.toString(),
+      headers: {
+        "Content-type": "application/x-www-form-urlencoded",
+      },
+    });
+    const data = await r.json();
+    console.log(data);
+  }
+</script>
+
+<!-- <script>
+  async function sendData(event) {
+    event.preventDefault();
+    const fd = new FormData(document.form1);
+    const usp3 = new URLSearchParams(fd);
+    const r = await fetch("", {
+      method: "POST",
+      body: usp3.toString(),
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    });
+
+    const data = await r.json();
+
+    console.log(data);
+    if (data.success) {
+        alert("登入成功");
+        location.href = "/";
+    } else {
+      alert(data.error || "帳號或密碼錯誤!!");
+    }
+  }
+</script> -->
+
+<%- include('parts/html-footer') %>

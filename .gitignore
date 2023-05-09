@@ -1,0 +1,10 @@
+public/fontawesome-free-6.3.0-web
+
+
+dev.env
+production.env
+
+node_modules/
+.vscode
+
+package-lock.json
